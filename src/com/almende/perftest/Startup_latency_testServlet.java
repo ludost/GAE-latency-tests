@@ -1,22 +1,16 @@
 package com.almende.perftest;
 
 import java.io.IOException;
-import javax.servlet.http.*;
 
-import net.sf.json.JSONSerializer;
-
-import com.eaio.uuid.UUID;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-public class Startup_latency_testServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
-		
-		UUID exampleUUID = new UUID();
-		resp.getWriter().println("Generated UUID:"+exampleUUID);
-		
-		resp.getWriter().println("As JSON, running json-lib: "+JSONSerializer.toJSON(exampleUUID));
+public class Startup_latency_testServlet  extends com.sun.jersey.spi.container.servlet.ServletContainer {
+	@Override
+	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+	{
+		super.service(req,res);
 	}
 }
